@@ -10,78 +10,101 @@ Built by [Konko Maji](https://www.linkedin.com/in/konkomaji/), inspired by Andre
 
 The interface follows the **Material 3 Expressive** design language with a saffron seed colour: tonal surface containers, pill-shaped filter chips, extra-large rounded corners, and springy motion curves. Fully responsive, with a bottom sheet for occupation details on mobile.
 
+The goal is simple: take Karpathy's idea and build something larger and fully India-specific, so that an ordinary person in India, a student, a job seeker, a teacher, can open it and understand at a glance where the country actually works and how AI might touch each kind of job. It is meant to grow over time as MoSPI releases fresh data.
+
 ---
 
 ## What it shows
 
-A D3 treemap of 40 occupations across 9 major groups (NCO-2015 classification). Each rectangle is one occupation. Size corresponds to number of workers. Colour can be switched between:
+A D3 treemap of **118 occupations** (NCO-2015 3-digit groups) across 9 major groups, covering India's entire **61.6 crore** workforce from the PLFS 2025 unit-level microdata. Each rectangle is one occupation. Size corresponds to the number of workers. Colour can be switched between:
 
 - **AI Exposure** (0 to 10): how much current AI can reshape daily work in this occupation
 - **Automation Risk** (0 to 10): physical automation likelihood in India within 10 years
-- **Median Wage**: annualised from PLFS weekly earnings
+- **Median Wage**: median annual earnings, computed from PLFS 2025 microdata
 - **Formalization Potential** (0 to 10): informal to formal employment transition likelihood
 - **Gig Platform Potential** (0 to 10): whether this occupation can move to app-based gig work
 - **Growth Outlook**: declining, stable, growing, or fast-growing
 
-Click any occupation to see a detailed card with radar chart, India-specific notes, and AI scoring rationale.
+Click any occupation to see a detailed card with radar chart, India-specific notes, and AI scoring rationale. Every occupation carries a short plain-English note about what the job actually is in India (for example, the kirana shopkeeper facing quick-commerce, the over 1 crore gig delivery riders, the 13 lakh Anganwadi workers).
+
+### Key findings from PLFS 2025
+
+| Fact | Figure |
+|---|---|
+| Total workers (age 15+, usual status) | 61.6 crore |
+| Largest single occupation | Crop farmers (market gardeners), about 13 crore |
+| Agriculture sector share of workers | 43.0% (down from 44.8% in 2024) |
+| Most AI-exposed large job | Software developers, 9/10 (about 40 lakh workers) |
+| Most platformised job | Delivery riders, gig potential 8/10 |
+| Lowest median earnings | Subsistence fishers and livestock farmers, under Rs 25,000/year |
+| Highest median earnings (in map) | Medical doctors, about Rs 6.1 lakh/year |
+| Self-employed share of all workers | 56.2% |
+| Informal employment | Over 90% in agriculture and construction labour |
+
+The treemap makes the structure visible instantly: agriculture and elementary work together hold over half of all Indian workers, while the high-paying, high-AI-exposure white-collar jobs (software, finance, engineering) are a small but economically loud sliver.
 
 ---
 
 ## Important note on data
 
-**The data is hardcoded, not fetched live.**
+**The data is hardcoded, not fetched live, but it is built from the real official microdata.**
 
-India's official labour statistics are released with significant delays. The PLFS (Periodic Labour Force Survey) is published annually by MoSPI, but the unit-level microdata typically arrives 12 to 18 months after the survey period ends. The raw microdata requires registration on the MoSPI portal and is distributed as fixed-width text files with a data dictionary appendix.
-
-The figures in this project are sourced from:
+The occupation-level employment, wages, rural share and informality in this project are computed directly from the **PLFS Calendar Year 2025 first-visit unit-level microdata** (file `CPERV1.txt`, 11,48,634 person records), downloaded from the MoSPI microdata portal. The headline aggregates and earnings benchmarks come from the PLFS Annual Report 2025 press note.
 
 | Source | What it covers | Vintage |
 |---|---|---|
-| PLFS Annual Report 2025 (NSO/MoSPI) | Headline aggregates: total workers, LFPR, WPR, UR, sector shares, earnings | Jan-Dec 2025, released 27 March 2026 |
-| PLFS Monthly Bulletin April 2026 (MoSPI) | Monthly CWS indicators (LFPR, WPR, UR) | April 2026 |
-| PLFS 2023-24 microdata (MoSPI) | Occupation-wise employment split, wages, rural share, informality | Released 2025 |
-| QES Q3 2024 (Labour Bureau) | Organised sector employment by industry | Q3 2024 |
-| NASSCOM Annual Report 2024 | IT and ITeS sector headcount | FY 2023-24 |
-| NITI Aayog Gig Economy Report 2022 | Gig and platform worker estimates | 2022 |
-| Labour Bureau Construction Survey | Construction sector wage data | 2023 |
+| **PLFS 2025 unit-level microdata** (NSO/MoSPI) | Occupation-wise employment, median earnings, rural share, informality, all 118 NCO-2015 groups | Jan-Dec 2025, microdata.gov.in catalog 284 |
+| PLFS Annual Report 2025 press note | Headline totals (61.6 Cr workers, LFPR, WPR, UR, sector shares, earnings) | Released 27 March 2026 |
+| PLFS Monthly Bulletin April 2026 | Monthly CWS indicators | April 2026 |
+| NITI Aayog Gig Economy Report 2022 | Gig and platform worker context | 2022 |
+| NASSCOM Annual Report 2024 | IT and ITeS sector context | FY 2023-24 |
 
-**Why not live data?** India does not have a public API for labour statistics. PLFS microdata must be manually downloaded after registration. Employment figures for informal sectors like agriculture and construction are survey-estimated, not enumerated. Many occupation categories used here combine multiple NCO-2015 sub-codes to produce usable sample sizes. The pipeline to reproduce the data from scratch is included (see below), but the compiled `data/occupations.json` and `data/occupations.js` are committed to the repo so the frontend works immediately without running anything.
+**Why not live data?** India does not have a public API for labour-survey microdata. The PLFS unit-level files must be downloaded after a free login and accepting a confidentiality undertaking (the data is anonymised; users agree not to attempt re-identification). The metadata is reachable via the NADA API, but the data files themselves are session-gated. So the pipeline is run locally once, and the compiled `data/occupations.json` and `data/occupations.js` are committed to the repo, so the website works immediately on GitHub Pages without any backend.
 
 ---
 
-## Latest data: PLFS Annual Report 2025
+## How the PLFS 2025 microdata was processed
 
-The headline aggregates were manually updated from the **PLFS Annual Report 2025** (January to December 2025), released by the National Statistics Office on 27 March 2026. This is the first PLFS round on a calendar-year cycle. Key figures now reflected in the project:
+This is the core of the project. The steps, all reproducible from `pipeline/`:
 
-| Indicator (age 15+, usual status ps+ss) | 2025 value |
-|---|---|
-| Total employed persons | **61.6 crore** (41.6 Cr male, 20.0 Cr female) |
-| Labour Force Participation Rate | 59.3% |
-| Worker Population Ratio | 57.4% |
-| Unemployment Rate | 3.1% (rural 2.4%, urban 4.8%) |
-| Youth (15-29) unemployment | 9.9% |
-| Self-employed share | 56.2% |
-| Regular wage/salaried share | 23.6% |
-| Casual labour share | 20.2% |
+**1. Obtain the microdata.** From [microdata.gov.in catalog 284](https://microdata.gov.in/NADA/index.php/catalog/284) (Periodic Labour Force Survey, Calendar Year 2025), after login and accepting the confidentiality terms. The person-level file is `CPERV1.txt`, a fixed-width text file of 11,48,634 records, each 371 characters wide.
 
-Sectoral shares of workers in 2025 (change vs 2024): agriculture 43.0% (down from 44.8), manufacturing 12.1% (up from 11.6), construction 12.0%, trade/hotels/restaurants 12.9%, transport/storage/communications 5.8%, other services 13.1%.
+**2. Read the official byte layout.** The exact column positions come from the official `FV_Data_LayoutPLFS_2025.xlsx` (sheet `CPERV1`), not guesswork. The fields used:
 
-Average monthly earnings in 2025: regular wage/salaried male Rs 24,217 and female Rs 18,353; self-employed male Rs 17,914 and female Rs 6,374; casual labour daily wage male Rs 455 and female Rs 315.
+| Field | Bytes | Meaning |
+|---|---|---|
+| Sector | 15 | 1 = rural, 2 = urban |
+| Age | 49-51 | filter to 15+ |
+| Principal activity status | 79-80 | UPSS status code |
+| Occupation (NCO) principal | 86-88 | NCO-2015 3-digit |
+| Subsidiary status / NCO | 99-100 / 106-108 | for subsidiary workers |
+| Regular-wage earnings | 322-329 | monthly, Rs |
+| Self-employed earnings | 330-337 | monthly, Rs |
+| Casual daily earnings | 133-304 | 14 day-activity fields |
+| Multiplier (weight) | 341-350 | survey weight x100 |
 
-For reference, the PLFS Monthly Bulletin for April 2026 reports CWS unemployment at 5.2%, LFPR at 55.0% and WPR at 52.2% (all ages 15+).
+**3. Apply the survey weights.** Each person record carries a multiplier; the final weight is `MULT / 100` (two implied decimals, per the official README). Workers are persons aged 15+ whose usual activity status (principal, else subsidiary) is a working code (11, 12, 21, 31, 41, 51). Self-employed = 11/12/21, regular wage = 31, casual = 41/51.
 
-**Two caveats on this refresh:**
+**4. Aggregate by occupation.** For each NCO-2015 3-digit code: sum of weights gives employment; rural and informal shares are weight-weighted; median annual earnings is a weighted median (regular and self-employed monthly earnings x12, casual weekly earnings x52).
 
-1. **The occupation-wise treemap split still derives from PLFS 2023-24 unit-level microdata.** The 2025 annual report publishes aggregates and broad-industry tables, but the NCO-2015 occupation-level breakdown requires processing the new unit-level microdata, which is distributed separately on the MoSPI microdata portal. The treemap proportions will be regenerated once that processing is done.
-2. **PLFS 2025 is not strictly comparable with earlier rounds.** The survey was revamped from January 2025: calendar-year cycle, monthly bulletins, rotational panel, and a sample of about 2.72 lakh households (roughly 2.65 times larger than before). NSO itself advises caution when comparing 2025 estimates with the July-June rounds up to 2023-24.
+**5. Calibrate to the official total.** The raw survey weights sum to about **51.9 crore** workers aged 15+ (which matches WPR 57.4% applied to the 90.3 crore surveyed 15+ population). The PLFS Annual Report headline of **61.6 crore** instead applies the WPR to the Ministry of Health projected population. To match the published figure, every occupation count is post-stratified by a single factor of about 1.188. This preserves the occupation shares exactly while making the totals match the press note.
 
-All these aggregates are stored in the `meta.plfs_2025` block of `data/occupations.json`.
+**6. Score and compile.** Each occupation gets AI exposure and India-context scores (see next section), then `5b_compile_2025.py` merges statistics and scores into `data/occupations.json` and `data/occupations.js`.
+
+The result: a treemap of **118 occupations** summing to 61.5 crore workers (within rounding of the official 61.6 crore), broken down by major group as follows: Agriculture 21.6 Cr, Elementary 13.5 Cr, Service and Sales 7.9 Cr, Craft and Trades 7.0 Cr, Machine Operators 3.6 Cr, Professionals 3.4 Cr, Managers 1.6 Cr, Technicians 1.5 Cr, Clerical 1.4 Cr.
+
+**Caveat on comparability:** PLFS was revamped from January 2025 (calendar-year cycle, monthly bulletins, rotational panel, about 2.72 lakh households, roughly 2.65 times the earlier sample). NSO advises caution when comparing 2025 estimates with the July-June rounds up to 2023-24.
 
 ---
 
 ## AI Exposure scoring
 
-Occupations were scored using **Claude Haiku** (`claude-haiku-4-5-20251001`) via the Anthropic API. The scoring prompt uses a Karpathy-style 0 to 10 anchored scale adapted for India:
+All 118 occupations are scored on a **Karpathy-style 0 to 10 anchored scale adapted for India**. Two scoring paths produce the same schema:
+
+- **Offline labour-economist scores** in `pipeline/scores_2025.py`. Every NCO-2015 group is scored by reasoning over the anchored scale in the Indian context, with a one-line rationale and a plain-English India note. This is the default, so the visualisation is always complete even without an API key.
+- **LLM scores** via `pipeline/4_score.py`, which calls **Claude Haiku** (`claude-haiku-4-5-20251001`) with the prompt below when an `ANTHROPIC_API_KEY` is set. These can replace the offline scores.
+
+The anchored scale (also used verbatim in the Haiku prompt):
 
 ### The scoring prompt
 
@@ -147,62 +170,42 @@ These are rough estimates from an LLM, not rigorous predictions. A high score do
 
 ## Pipeline
 
-The `pipeline/` folder contains scripts to regenerate the data from scratch if you have access to the raw PLFS microdata.
-
 ```
 pipeline/
-  1_fetch_ncs.py      Scrapes NCS portal for occupation descriptions (optional)
-  2_parse_plfs.py     Parses PLFS fixed-width unit-level microdata into per-NCO stats
-  3_extract.py        Merges PLFS stats with NCS descriptions
-  4_score.py          Scores each occupation via Claude Haiku (Karpathy-style prompt)
-  5_compile.py        Compiles final occupations.json for the frontend
+  6_parse_plfs2025.py   Parse PLFS 2025 CPERV1.txt microdata into per-NCO stats (CURRENT)
+  scores_2025.py        AI exposure + India scores for all NCO-2015 groups
+  5b_compile_2025.py    Merge 2025 stats + scores into occupations.json/.js (CURRENT)
+
+  # earlier / alternative scripts
+  1_fetch_ncs.py        Scrape NCS portal for occupation descriptions (optional)
+  2_parse_plfs.py       Parse older PLFS fixed-width microdata (2023-24 layout)
+  3_extract.py          Merge PLFS stats with NCS descriptions
+  4_score.py            Score via Claude Haiku when ANTHROPIC_API_KEY is set
+  5_compile.py          Older compile step
 ```
 
-### Step 1 (optional): Fetch NCS descriptions
+### Current workflow (PLFS 2025)
+
+**Step 1: Get the microdata.** Log in at microdata.gov.in, open [catalog 284](https://microdata.gov.in/NADA/index.php/catalog/284), accept the confidentiality undertaking, download the unit-level archive, and place `CPERV1.txt` in `data/raw/plfs/`. The official documentation (byte layout, README, schedules) is already in `data/raw/plfs2025_docs/`.
+
+**Step 2: Parse and update.**
 
 ```bash
-python pipeline/1_fetch_ncs.py
+python pipeline/6_parse_plfs2025.py            # dry run, prints calibration report
+python pipeline/6_parse_plfs2025.py --apply    # writes per-NCO stats
 ```
 
-Scrapes [ncs.gov.in](https://ncs.gov.in) for occupation descriptions by sector. This is optional. If you skip it, occupations will have no long description.
+This reads the official byte layout, applies survey weights, aggregates by NCO-2015 code, calibrates to the 61.6 crore official total, and writes `data/processed/plfs2025_by_nco.json`.
 
-### Step 2: Parse PLFS microdata
+**Step 3: Compile the final dataset.**
 
 ```bash
-python pipeline/2_parse_plfs.py
+python pipeline/5b_compile_2025.py
 ```
 
-**Requires raw PLFS data.** Download unit-level person records from [mospi.gov.in/web/plfs](https://mospi.gov.in/web/plfs) (Annual Reports section, unit-level data tab). After registration and approval, place the `.txt` files in `data/raw/plfs/`. The script produces per-NCO employment counts, median wages, rural share, and informality rate.
+Merges the parsed statistics with the scores in `scores_2025.py` and writes `data/occupations.json` and `data/occupations.js`. The `.js` file wraps the JSON as `window.JOBS_DATA = {...}` so the frontend works on `file://` and on GitHub Pages without a server.
 
-Note: PLFS fixed-width column positions vary by year. Always check the data dictionary appendix in the Annual Report PDF and update `colspecs` in `2_parse_plfs.py` accordingly.
-
-### Step 3: Merge
-
-```bash
-python pipeline/3_extract.py
-```
-
-Merges PLFS statistics with NCS descriptions. Produces `data/processed/occupations_base.json`.
-
-### Step 4: Score with Claude Haiku
-
-```bash
-# Add your key to .env first
-cp .env.example .env
-# Edit .env and set ANTHROPIC_API_KEY=sk-ant-...
-
-python pipeline/4_score.py
-```
-
-Calls Claude Haiku for each occupation. Has checkpoint/resume support, so it can be interrupted and restarted. Cost is approximately $2 to $5 for 150 occupations.
-
-### Step 5: Compile frontend data
-
-```bash
-python pipeline/5_compile.py
-```
-
-Produces `data/occupations.json` and `data/occupations.js`. The `.js` file wraps the JSON as `window.JOBS_DATA = {...}` so the frontend works on `file://` without a server.
+**Optional: re-score with Claude Haiku.** Set `ANTHROPIC_API_KEY` in `.env` and run `python pipeline/4_score.py` to replace the offline scores with LLM scores.
 
 ---
 
@@ -229,32 +232,46 @@ python -m http.server 8000
 | Design | Material 3 Expressive (saffron seed, tonal surfaces, spring motion) |
 | Treemap | D3 treemap (squarify, power-scaled employment) |
 | Info card | D3 SVG radar chart, M3 elevated card, mobile bottom sheet |
-| Data | Hardcoded JSON, loaded as JS global for file:// compat |
-| Scoring | Python 3.10+, Anthropic SDK, Claude Haiku |
+| Data | PLFS 2025 microdata, compiled to JSON, loaded as JS global for file:// compat |
+| Scoring | Python 3.10+; offline anchored scoring, optional Claude Haiku |
 | Hosting | GitHub Pages (static, no build step) |
 
 ---
 
 ## Data limitations
 
-- **PLFS sample size**: some NCO 3-digit codes have small sample sizes at state level. National-level estimates are more reliable than state or district breakdowns.
-- **Informal sector wages**: PLFS captures wages for regular wage and salaried workers reliably. Self-employed and casual worker incomes are harder to measure and may be underestimated.
-- **Gig workers**: Platform workers like Swiggy and Ola drivers are classified under delivery and transport NCOs in PLFS. Dedicated gig economy counts come from NITI Aayog estimates, which are projections, not survey enumeration.
-- **Agriculture**: 43 percent of India's workforce is in agriculture but PLFS wage data for subsistence farmers is limited. Many agricultural workers report zero or near-zero measured wages.
-- **Data lag**: The most recent PLFS at time of build was 2023-24. India targets annual PLFS releases but delays of 12 to 18 months are common. The pipeline can be re-run when new data is available.
+- **PLFS sample size**: some NCO 3-digit codes have small sample sizes. National estimates are reliable; the smallest occupations (under about 1 lakh workers) are dropped from the map.
+- **Informal sector wages**: PLFS captures regular wage and salaried earnings reliably. Self-employed and casual incomes are harder to measure and may be underestimated; subsistence farmers often report near-zero earnings.
+- **Post-stratification**: occupation counts are scaled by a single factor (about 1.188) so the total matches the official 61.6 crore. This preserves shares exactly but assumes uniform scaling across occupations.
+- **Gig workers**: platform workers are classified under delivery and transport NCOs in PLFS. Dedicated gig counts (over 1 crore, NITI Aayog) are projections, not survey enumeration.
+- **Comparability**: PLFS 2025 used a revamped survey design and is not strictly comparable with rounds up to 2023-24.
+
+---
+
+## Roadmap
+
+Indian Jobs Map is meant to grow into the most complete, India-specific picture of who works at what, refreshed as MoSPI releases new data. Planned directions:
+
+- **Auto-refresh on new PLFS data**: re-run the pipeline whenever a new annual or quarterly PLFS round lands, so the map stays current within weeks of release.
+- **State-level view**: drill into any state, using the PLFS state tables (Jan-Mar 2026 already collected) and state-wise microdata.
+- **Gender and rural/urban toggles**: split every occupation by male/female and rural/urban, the data is already in the microdata.
+- **Time slider**: show how each occupation's size, wage and informality has moved across PLFS rounds.
+- **Alternative colourings**: robotics exposure, offshoring risk, climate-transition impact, and skill-shortage severity, each a re-run of the scoring prompt.
+- **Wage and education layers**: add education-level and earnings-distribution views per occupation.
+- **Vernacular labels**: Hindi and other Indian-language occupation names so the tool is readable for everyone, not only English speakers.
 
 ---
 
 ## Acknowledgements
 
 - [Andrej Karpathy](https://karpathy.ai/jobs/) for the original US jobs visualisation concept and scoring prompt structure
-- MoSPI (Ministry of Statistics and Programme Implementation) for PLFS microdata
-- NASSCOM for IT sector employment estimates
-- National Career Service (NCS) portal for occupation descriptions
+- NSO / MoSPI (Ministry of Statistics and Programme Implementation) for PLFS unit-level microdata, via [microdata.gov.in](https://microdata.gov.in)
+- NITI Aayog for gig-economy estimates
+- NASSCOM for IT sector context
 - [Material 3 Expressive](https://m3.material.io/) design guidelines by Google
 
 ---
 
 ## License
 
-MIT. The compiled data files in `data/` are derived from publicly available government publications (PLFS, QES, NASSCOM). See individual source links above for their terms.
+MIT for the code. The compiled data files in `data/` are derived from PLFS unit-level microdata published by NSO/MoSPI; the underlying data is subject to MoSPI's terms of use. Only anonymised, aggregated occupation-level figures are published here; no microdata is redistributed.

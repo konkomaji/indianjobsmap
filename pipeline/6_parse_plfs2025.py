@@ -14,12 +14,14 @@ DATA DOWNLOAD (login required, free account):
 Byte layout from "2. FV_Data_LayoutPLFS_2025.xlsx" (CPERV1 sheet), already
 downloaded to data/raw/plfs2025_docs/. Record length 371+1. 1,148,634 records.
 
-Weight handling (from README2025.docx):
+Weight handling (verified against the data):
   Final Weight = MULT / 100   (MULT at bytes 341-350, two implied decimals)
-  The file pools 12 monthly cross-sections (Jan-Dec 2025), so a national
-  annual-average estimate = sum(weights) / 12.
-  Calibration check: workers aged 15+ should come to about 61.6 crore
-  (PLFS Annual Report 2025 press note).
+  The pooled weights sum to ONE annual-average national cross-section
+  (15+ population about 90.3 crore), no division by 12 needed.
+  Survey-weighted workers 15+ come to about 51.6 crore, which matches
+  WPR 57.4% x 90.3 crore. The press-note figure of 61.6 crore workers
+  instead applies WPR to the MoHFW projected population, so employment
+  counts are post-stratified: scaled by 616,000,000 / survey worker total.
 
 Usage:
   python pipeline/6_parse_plfs2025.py            # parse + report only
@@ -59,7 +61,7 @@ WORKING = {"11","12","21","31","41","51"}   # UPSS working status codes
 SELF_EMP = {"11","12","21"}
 REGULAR  = {"31"}
 CASUAL   = {"41","51"}
-MONTHS_POOLED = 12
+OFFICIAL_WORKERS = 616_000_000   # PLFS AR 2025 press note, 15+, MoHFW population
 
 # NCO-2015 3-digit names (subset; unknown codes fall back to NCO-XXX)
 NCO_NAMES = {
@@ -156,10 +158,12 @@ def parse_file(path):
             mult = cut(line, F["mult"]).strip()
             if not mult.isdigit():
                 continue
-            w = int(mult) / 100.0 / MONTHS_POOLED
+            w = int(mult) / 100.0
 
             age_s = cut(line, F["age"]).strip()
             age = int(age_s) if age_s.isdigit() else 0
+            if age < 15:
+                continue   # headline workforce is 15+
 
             pas = cut(line, F["pas"]).strip()
             sas = cut(line, F["sas"]).strip()
@@ -172,8 +176,7 @@ def parse_file(path):
             else:
                 continue
 
-            if age >= 15:
-                total_w15 += w
+            total_w15 += w
 
             if len(nco) != 3 or not nco.isdigit() or nco[0] == "0":
                 continue
@@ -243,21 +246,26 @@ def main():
     print(f"Parsing {path.name} ...")
     acc, total_w15, n_lines = parse_file(path)
     print(f"  {n_lines:,} lines read")
-    print(f"  Workers aged 15+: {total_w15/1e7:.1f} crore "
-          f"(press-note benchmark: 61.6 crore)")
-    if not (55e7 < total_w15 < 70e7):
+    print(f"  Survey-weighted workers 15+: {total_w15/1e7:.1f} crore "
+          f"(expected about 51.6 crore = WPR 57.4% x 90.3 crore)")
+    if not (45e7 < total_w15 < 60e7):
         print("  WARNING: total far from benchmark, check layout/weights")
+
+    # Post-stratify to the official press-note total (MoHFW population base)
+    scale = OFFICIAL_WORKERS / total_w15
+    print(f"  Post-stratification scale: x{scale:.3f} "
+          f"-> {OFFICIAL_WORKERS/1e7:.1f} crore official total")
 
     results = []
     for nco, a in acc.items():
-        if a["w"] < 100000:   # skip occupations under 1 lakh workers
+        if a["w"] * scale < 100000:   # skip occupations under 1 lakh workers
             continue
         results.append({
             "code": nco,
             "name": NCO_NAMES.get(nco, f"NCO-{nco}"),
             "major_group": nco[0],
             "major_group_name": MAJOR_NAMES.get(nco[0], "Other"),
-            "employment": int(a["w"]),
+            "employment": int(a["w"] * scale),
             "median_wage": weighted_median(a["wages"]),
             "rural_pct": round(100 * a["w_rural"] / a["w"]),
             "informal_pct": round(100 * (a["w_casual"] + a["w_self"]) / a["w"]),

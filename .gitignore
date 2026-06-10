@@ -19,6 +19,9 @@ build/
 data/raw/
 data/processed/
 
+# Source government PDFs / spreadsheets (large, public downloads)
+current data/
+
 # Pipeline checkpoints
 data/processed/occupations_scored_checkpoint.json
 

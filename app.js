@@ -20,9 +20,9 @@ const LAYERS = {
   },
   median_wage: {
     label: 'Median Annual Wage',
-    domain: [72000, 1100000],
+    domain: [50000, 600000],
     fn: t => d3.interpolateRgbBasis(['#FFB74D','#66BB6A','#2E7D32'])(t),
-    lo: '₹72K / yr', hi: '₹11L / yr',
+    lo: '₹50K / yr', hi: '₹6L / yr',
     tip: d => `Wage: ${fmtWage(d.median_wage)}`,
   },
   formalization_potential: {
