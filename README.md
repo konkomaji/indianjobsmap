@@ -1,6 +1,6 @@
 # Indian Jobs Map
 
-A research tool for visually exploring India's 563 million workers by occupation, sector, and AI exposure. Inspired by [karpathy/jobs](https://karpathy.ai/jobs/).
+A research tool for visually exploring India's 61.6 crore (616 million) workers by occupation, sector, and AI exposure. Inspired by [karpathy/jobs](https://karpathy.ai/jobs/).
 
 **This is not a report, a paper, or a serious economic publication. It is a development tool for exploring India's labour force data visually.**
 
@@ -37,13 +37,45 @@ The figures in this project are sourced from:
 
 | Source | What it covers | Vintage |
 |---|---|---|
-| PLFS 2023-24 (MoSPI) | Employment counts, wages, rural share, employment type | Released 2025 |
+| PLFS Annual Report 2025 (NSO/MoSPI) | Headline aggregates: total workers, LFPR, WPR, UR, sector shares, earnings | Jan-Dec 2025, released 27 March 2026 |
+| PLFS Monthly Bulletin April 2026 (MoSPI) | Monthly CWS indicators (LFPR, WPR, UR) | April 2026 |
+| PLFS 2023-24 microdata (MoSPI) | Occupation-wise employment split, wages, rural share, informality | Released 2025 |
 | QES Q3 2024 (Labour Bureau) | Organised sector employment by industry | Q3 2024 |
 | NASSCOM Annual Report 2024 | IT and ITeS sector headcount | FY 2023-24 |
 | NITI Aayog Gig Economy Report 2022 | Gig and platform worker estimates | 2022 |
 | Labour Bureau Construction Survey | Construction sector wage data | 2023 |
 
 **Why not live data?** India does not have a public API for labour statistics. PLFS microdata must be manually downloaded after registration. Employment figures for informal sectors like agriculture and construction are survey-estimated, not enumerated. Many occupation categories used here combine multiple NCO-2015 sub-codes to produce usable sample sizes. The pipeline to reproduce the data from scratch is included (see below), but the compiled `data/occupations.json` and `data/occupations.js` are committed to the repo so the frontend works immediately without running anything.
+
+---
+
+## Latest data: PLFS Annual Report 2025
+
+The headline aggregates were manually updated from the **PLFS Annual Report 2025** (January to December 2025), released by the National Statistics Office on 27 March 2026. This is the first PLFS round on a calendar-year cycle. Key figures now reflected in the project:
+
+| Indicator (age 15+, usual status ps+ss) | 2025 value |
+|---|---|
+| Total employed persons | **61.6 crore** (41.6 Cr male, 20.0 Cr female) |
+| Labour Force Participation Rate | 59.3% |
+| Worker Population Ratio | 57.4% |
+| Unemployment Rate | 3.1% (rural 2.4%, urban 4.8%) |
+| Youth (15-29) unemployment | 9.9% |
+| Self-employed share | 56.2% |
+| Regular wage/salaried share | 23.6% |
+| Casual labour share | 20.2% |
+
+Sectoral shares of workers in 2025 (change vs 2024): agriculture 43.0% (down from 44.8), manufacturing 12.1% (up from 11.6), construction 12.0%, trade/hotels/restaurants 12.9%, transport/storage/communications 5.8%, other services 13.1%.
+
+Average monthly earnings in 2025: regular wage/salaried male Rs 24,217 and female Rs 18,353; self-employed male Rs 17,914 and female Rs 6,374; casual labour daily wage male Rs 455 and female Rs 315.
+
+For reference, the PLFS Monthly Bulletin for April 2026 reports CWS unemployment at 5.2%, LFPR at 55.0% and WPR at 52.2% (all ages 15+).
+
+**Two caveats on this refresh:**
+
+1. **The occupation-wise treemap split still derives from PLFS 2023-24 unit-level microdata.** The 2025 annual report publishes aggregates and broad-industry tables, but the NCO-2015 occupation-level breakdown requires processing the new unit-level microdata, which is distributed separately on the MoSPI microdata portal. The treemap proportions will be regenerated once that processing is done.
+2. **PLFS 2025 is not strictly comparable with earlier rounds.** The survey was revamped from January 2025: calendar-year cycle, monthly bulletins, rotational panel, and a sample of about 2.72 lakh households (roughly 2.65 times larger than before). NSO itself advises caution when comparing 2025 estimates with the July-June rounds up to 2023-24.
+
+All these aggregates are stored in the `meta.plfs_2025` block of `data/occupations.json`.
 
 ---
 

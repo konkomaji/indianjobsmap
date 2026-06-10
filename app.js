@@ -378,10 +378,12 @@ function closeMob() {
 //  Stats
 // ═══════════════════════════════════════════════════════════════
 function populateStats() {
-  const total = data.occupations.reduce((s,o)=>s+o.employment,0);
-  document.getElementById('hdr-workers').textContent = fmtNum(total);
+  // Header shows official PLFS workforce total; legend shows sum of mapped occupations
+  const mapped = data.occupations.reduce((s,o)=>s+o.employment,0);
+  const official = data.meta?.total_workers || mapped;
+  document.getElementById('hdr-workers').textContent = fmtNum(official);
   document.getElementById('hdr-occ').textContent     = data.occupations.length;
-  document.getElementById('leg-workers').textContent = fmtNum(total);
+  document.getElementById('leg-workers').textContent = fmtNum(mapped);
 }
 
 // ═══════════════════════════════════════════════════════════════
