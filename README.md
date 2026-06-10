@@ -252,13 +252,23 @@ python -m http.server 8000
 
 Indian Jobs Map is meant to grow into the most complete, India-specific picture of who works at what, refreshed as MoSPI releases new data. Planned directions:
 
+- **Education-level data**: add an education layer showing the typical schooling and qualification profile of each occupation, drawn from the PLFS education fields already in the microdata.
+- **Unemployment data**: bring in unemployment rate, youth unemployment and NEET (not in employment, education or training) figures, so the map shows not just where people work but where they cannot find work.
+- **Overall analysis tab**: a separate tab summarising the big picture, headline indicators (LFPR, WPR, UR), sector shifts, gender gaps, formal vs informal split, and the AI-exposure distribution across the whole workforce, in plain language for a general audience.
 - **Auto-refresh on new PLFS data**: re-run the pipeline whenever a new annual or quarterly PLFS round lands, so the map stays current within weeks of release.
 - **State-level view**: drill into any state, using the PLFS state tables (Jan-Mar 2026 already collected) and state-wise microdata.
 - **Gender and rural/urban toggles**: split every occupation by male/female and rural/urban, the data is already in the microdata.
 - **Time slider**: show how each occupation's size, wage and informality has moved across PLFS rounds.
 - **Alternative colourings**: robotics exposure, offshoring risk, climate-transition impact, and skill-shortage severity, each a re-run of the scoring prompt.
-- **Wage and education layers**: add education-level and earnings-distribution views per occupation.
 - **Vernacular labels**: Hindi and other Indian-language occupation names so the tool is readable for everyone, not only English speakers.
+
+---
+
+## Contributing
+
+Contributions are always welcome. Whether you want to add a new data layer, improve an occupation's India note, refine the AI scores, fix a bug, or translate labels into an Indian language, please jump in. See [CONTRIBUTING.md](CONTRIBUTING.md) for how to set up, the project structure, and how to open a pull request. First-time contributors are especially welcome.
+
+For how to use, embed or build on the project, see [USAGE.md](USAGE.md).
 
 ---
 
