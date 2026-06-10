@@ -6,7 +6,9 @@ A research tool for visually exploring India's 563 million workers by occupation
 
 Live demo: [konkomaji.github.io/indianjobsmap](https://konkomaji.github.io/indianjobsmap)
 
-Built by **Konko Maji**, inspired by Andrej Karpathy's US Jobs visualisation.
+Built by [Konko Maji](https://www.linkedin.com/in/konkomaji/), inspired by Andrej Karpathy's US Jobs visualisation.
+
+The interface follows the **Material 3 Expressive** design language with a saffron seed colour: tonal surface containers, pill-shaped filter chips, extra-large rounded corners, and springy motion curves. Fully responsive, with a bottom sheet for occupation details on mobile.
 
 ---
 
@@ -192,11 +194,12 @@ python -m http.server 8000
 | Layer | What |
 |---|---|
 | Frontend | Vanilla JS, D3 v7, Poppins (Google Fonts) |
+| Design | Material 3 Expressive (saffron seed, tonal surfaces, spring motion) |
 | Treemap | D3 treemap (squarify, power-scaled employment) |
-| Info card | D3 SVG radar chart, CSS glassmorphism |
+| Info card | D3 SVG radar chart, M3 elevated card, mobile bottom sheet |
 | Data | Hardcoded JSON, loaded as JS global for file:// compat |
 | Scoring | Python 3.10+, Anthropic SDK, Claude Haiku |
-| Hosting | GitHub Pages |
+| Hosting | GitHub Pages (static, no build step) |
 
 ---
 
@@ -216,6 +219,7 @@ python -m http.server 8000
 - MoSPI (Ministry of Statistics and Programme Implementation) for PLFS microdata
 - NASSCOM for IT sector employment estimates
 - National Career Service (NCS) portal for occupation descriptions
+- [Material 3 Expressive](https://m3.material.io/) design guidelines by Google
 
 ---
 

@@ -93,24 +93,7 @@ button { font-family: var(--font); }
   z-index: 10;
 }
 
-#logo-wrap { display: flex; align-items: center; gap: 10px; }
-
-/* Expressive logo mark: rounded-square saffron tile */
-#logo-wrap::before {
-  content: 'IJ';
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px; height: 36px;
-  border-radius: var(--shape-sm);
-  background: linear-gradient(135deg, var(--saffron-vivid) 0%, var(--saffron) 100%);
-  color: #FFFFFF;
-  font-size: 14px;
-  font-weight: 800;
-  letter-spacing: -.5px;
-  box-shadow: var(--elev-1);
-  flex-shrink: 0;
-}
+#logo-wrap { display: flex; align-items: center; }
 
 #logo {
   font-size: 22px;
@@ -519,7 +502,6 @@ button { font-family: var(--font); }
 @media (max-width: 820px) {
   #top-bar  { padding: 10px 16px; }
   #logo     { font-size: 18px; }
-  #logo-wrap::before { width: 30px; height: 30px; font-size: 12px; }
   #hdr-stat { display: none; }
   .hdr-link { padding: 6px 13px; font-size: 11px; }
   #desc     { padding: 8px 16px 0; }
