@@ -1,0 +1,34 @@
+# Environment
+.env
+*.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.Python
+venv/
+env/
+.venv/
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+
+# Raw PLFS microdata (large, requires MoSPI registration)
+data/raw/
+data/processed/
+
+# Pipeline checkpoints
+data/processed/occupations_scored_checkpoint.json
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*.DS_Store
+Thumbs.db
+
+# Claude session files (not for repo)
+.claude/

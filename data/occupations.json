@@ -1,0 +1,347 @@
+{
+  "meta": {
+    "title": "Indian Jobs Map",
+    "tagline": "India's 563M workforce — occupation by occupation",
+    "total_workers": 563000000,
+    "data_vintage": "PLFS 2023-24",
+    "wage_vintage": "PLFS 2023-24 (annualised from weekly earnings)",
+    "source_primary": "Periodic Labour Force Survey 2023-24, MoSPI",
+    "source_secondary": "NASSCOM 2024, NITI Aayog Gig Report 2022, QES Q3 2024, Labour Bureau",
+    "scored_by": "Claude Haiku — India-context scoring",
+    "note": "Sample data uses PLFS 2023-24 estimates. Run pipeline/ to regenerate from unit-level microdata.",
+    "caveat": "AI Exposure does not predict job loss. It estimates the degree to which current AI (language models, vision, code) can reshape daily work — not whether demand for the occupation will fall. An agricultural labourer scoring 1 and a data-entry clerk scoring 9 face very different futures shaped by forces beyond AI alone."
+  },
+  "major_groups": {
+    "1": "Managers",
+    "2": "Professionals",
+    "3": "Technicians",
+    "4": "Clerical",
+    "5": "Service & Sales",
+    "6": "Agriculture",
+    "7": "Craft & Trades",
+    "8": "Machine Operators",
+    "9": "Elementary"
+  },
+  "occupations": [
+    {
+      "code": "111", "name": "Senior Govt Officials & IAS/IPS", "major_group": "1", "major_group_name": "Managers",
+      "employment": 280000, "median_wage": 1080000, "rural_pct": 30, "informal_pct": 2,
+      "data_vintage": "QES Q3 2024",
+      "india_note": "Coveted 'sarkari naukri' — IAS, IPS, IFS officers. ~900 IAS vacancies in 2024. Pension, housing, power attract millions of UPSC aspirants annually.",
+      "ai_exposure": 5, "ai_rationale": "Policy drafting and file-noting increasingly AI-assisted, but authority, discretion, and field administration remain deeply human.",
+      "automation_risk": 1, "formalization_potential": 9, "gig_potential": 0, "growth_outlook": "stable"
+    },
+    {
+      "code": "121", "name": "Corporate & Business Managers", "major_group": "1", "major_group_name": "Managers",
+      "employment": 1800000, "median_wage": 720000, "rural_pct": 12, "informal_pct": 12,
+      "data_vintage": "PLFS 2023-24",
+      "india_note": "Concentrated in Mumbai, Bengaluru, Delhi NCR, Hyderabad. Growth driven by startups and MNC India operations. Management education boom — 6,500+ MBA colleges.",
+      "ai_exposure": 6, "ai_rationale": "Strategic decisions need human judgment, but reports, presentations, and data analysis are rapidly AI-augmentable.",
+      "automation_risk": 2, "formalization_potential": 9, "gig_potential": 2, "growth_outlook": "growing"
+    },
+    {
+      "code": "131", "name": "Production & Operations Managers", "major_group": "1", "major_group_name": "Managers",
+      "employment": 1400000, "median_wage": 600000, "rural_pct": 25, "informal_pct": 18,
+      "data_vintage": "PLFS 2023-24",
+      "india_note": "Manufacturing sector revival under PLI scheme driving demand. Automobile, electronics, pharma clusters in Pune, Chennai, Ahmedabad, Noida.",
+      "ai_exposure": 5, "ai_rationale": "Factory floor supervision requires physical presence; AI assists in scheduling, quality control, and demand forecasting.",
+      "automation_risk": 3, "formalization_potential": 8, "gig_potential": 1, "growth_outlook": "growing"
+    },
+    {
+      "code": "214", "name": "Engineers (Civil, Mechanical, Electrical)", "major_group": "2", "major_group_name": "Professionals",
+      "employment": 3200000, "median_wage": 540000, "rural_pct": 18, "informal_pct": 20,
+      "data_vintage": "PLFS 2023-24",
+      "india_note": "~1.5M engineering graduates annually but ~40% face skill-mismatch. Infrastructure push under PM Gati Shakti and National Infrastructure Pipeline driving civil engineering demand.",
+      "ai_exposure": 7, "ai_rationale": "AutoCAD, simulation, structural analysis, and documentation are heavily AI-augmentable. Site supervision remains manual.",
+      "automation_risk": 3, "formalization_potential": 7, "gig_potential": 4, "growth_outlook": "growing"
+    },
+    {
+      "code": "221", "name": "Doctors & Medical Specialists", "major_group": "2", "major_group_name": "Professionals",
+      "employment": 1300000, "median_wage": 1020000, "rural_pct": 20, "informal_pct": 28,
+      "data_vintage": "PLFS 2023-24",
+      "india_note": "India has 1 doctor per 854 people — WHO recommends 1 per 1,000. ~70% of doctors in urban areas serve 30% of population. Medical tourism generates $9B. MBBS seats doubled since 2014.",
+      "ai_exposure": 5, "ai_rationale": "AI radiology, drug discovery, and diagnostic support are real — but patient examination, surgery, and clinical judgment remain irreplaceable.",
+      "automation_risk": 2, "formalization_potential": 8, "gig_potential": 3, "growth_outlook": "growing"
+    },
+    {
+      "code": "223", "name": "Nurses & Midwives", "major_group": "2", "major_group_name": "Professionals",
+      "employment": 2200000, "median_wage": 276000, "rural_pct": 28, "informal_pct": 32,
+      "data_vintage": "PLFS 2023-24",
+      "india_note": "India produces ~200K nurses annually. Major exporter to Gulf, UK, Canada — creating domestic shortages. Nurse-to-population ratio of 1.7 per 1,000 vs WHO target of 3.",
+      "ai_exposure": 4, "ai_rationale": "Patient care is physical and relational. AI monitors vitals and flags anomalies, but bedside care and emotional support are irreplaceably human.",
+      "automation_risk": 2, "formalization_potential": 6, "gig_potential": 2, "growth_outlook": "growing"
+    },
+    {
+      "code": "234", "name": "Primary & Secondary School Teachers", "major_group": "2", "major_group_name": "Professionals",
+      "employment": 8000000, "median_wage": 384000, "rural_pct": 42, "informal_pct": 22,
+      "data_vintage": "PLFS 2023-24",
+      "india_note": "~9.5 lakh govt schools, 3.3 lakh private. 1.1M teacher vacancies as of 2023. NEP 2020 pushing competency-based learning. Private tuition (coaching) industry at ₹5.8L crore separately.",
+      "ai_exposure": 4, "ai_rationale": "Lesson planning and assessment AI-augmentable, but classroom relationships, motivation, and adaptive teaching remain deeply human — especially in rural India.",
+      "automation_risk": 1, "formalization_potential": 7, "gig_potential": 5, "growth_outlook": "stable"
+    },
+    {
+      "code": "251", "name": "Software & IT Professionals", "major_group": "2", "major_group_name": "Professionals",
+      "employment": 5300000, "median_wage": 1080000, "rural_pct": 4, "informal_pct": 4,
+      "data_vintage": "NASSCOM 2024",
+      "india_note": "India's 53L tech workers generate $245B in exports. Second-largest tech workforce globally. Bengaluru, Hyderabad, Pune, Chennai are global delivery hubs. 1.7L H1-B visa holders in USA are Indian IT professionals.",
+      "ai_exposure": 9, "ai_rationale": "Code generation, testing, documentation, and design are being reshaped by AI faster than any other sector. The work is not disappearing — it is being amplified and redefined.",
+      "automation_risk": 4, "formalization_potential": 9, "gig_potential": 6, "growth_outlook": "fast-growing"
+    },
+    {
+      "code": "241", "name": "Finance & Accountants (CA, CFA)", "major_group": "2", "major_group_name": "Professionals",
+      "employment": 900000, "median_wage": 600000, "rural_pct": 10, "informal_pct": 15,
+      "data_vintage": "PLFS 2023-24",
+      "india_note": "~3.4L chartered accountants, 1.5L CFPs. ICAI is world's second-largest accounting body. GST compliance and SEBI regulations driving sustained demand. Big 4 firms expanding India delivery centres.",
+      "ai_exposure": 7, "ai_rationale": "Audit, tax filing, financial modelling — AI tools are advancing fast. But interpretation, client advisory, and regulatory judgment stay human.",
+      "automation_risk": 5, "formalization_potential": 9, "gig_potential": 5, "growth_outlook": "growing"
+    },
+    {
+      "code": "231", "name": "University & College Professors", "major_group": "2", "major_group_name": "Professionals",
+      "employment": 650000, "median_wage": 780000, "rural_pct": 14, "informal_pct": 8,
+      "data_vintage": "PLFS 2023-24",
+      "india_note": "India has 1,043 universities and 42,000+ colleges — world's largest higher education system by institution count. 30% faculty posts vacant at central universities.",
+      "ai_exposure": 5, "ai_rationale": "Research, grading, and literature review benefit from AI; teaching, mentorship, and original thinking remain human-centred.",
+      "automation_risk": 1, "formalization_potential": 9, "gig_potential": 4, "growth_outlook": "stable"
+    },
+    {
+      "code": "351", "name": "ICT Technicians & IT Support", "major_group": "3", "major_group_name": "Technicians",
+      "employment": 2800000, "median_wage": 396000, "rural_pct": 8, "informal_pct": 12,
+      "data_vintage": "PLFS 2023-24",
+      "india_note": "BPO/ITES sector employs ~1.5M in IT support. Rapid shift to AI-assisted helpdesks is already underway. Tier-2 cities (Coimbatore, Indore, Jaipur) becoming new IT hubs.",
+      "ai_exposure": 8, "ai_rationale": "L1/L2 support increasingly handled by AI chatbots. Complex infrastructure work and client-facing roles remain, but volume-based support jobs are being restructured.",
+      "automation_risk": 6, "formalization_potential": 8, "gig_potential": 5, "growth_outlook": "growing"
+    },
+    {
+      "code": "321", "name": "Medical & Diagnostic Technicians", "major_group": "3", "major_group_name": "Technicians",
+      "employment": 2000000, "median_wage": 252000, "rural_pct": 28, "informal_pct": 38,
+      "data_vintage": "PLFS 2023-24",
+      "india_note": "Diagnostic labs like Lal PathLabs, Dr Lal growing rapidly. AI-powered radiology (Niramai, Qure.ai) already deployed. 900M Ayushman Bharat beneficiaries driving lab testing demand.",
+      "ai_exposure": 5, "ai_rationale": "AI radiology assistants (Qure.ai) already deployed in India. Routine diagnostic work is being augmented, but complex cases and equipment operation stay manual.",
+      "automation_risk": 4, "formalization_potential": 5, "gig_potential": 3, "growth_outlook": "growing"
+    },
+    {
+      "code": "341", "name": "Insurance & Finance Agents", "major_group": "3", "major_group_name": "Technicians",
+      "employment": 3500000, "median_wage": 300000, "rural_pct": 30, "informal_pct": 40,
+      "data_vintage": "PLFS 2023-24",
+      "india_note": "LIC has 13.5L agents — largest insurance salesforce globally. IRDAI regulations + Jan Suraksha schemes expanding insurance penetration from 4% to target 10% of GDP. Paytm, Policybazaar digitising but agent networks persist.",
+      "ai_exposure": 6, "ai_rationale": "Claims processing and underwriting AI-augmentable; trust-based rural insurance selling requires human agents for years yet.",
+      "automation_risk": 4, "formalization_potential": 6, "gig_potential": 6, "growth_outlook": "growing"
+    },
+    {
+      "code": "411", "name": "Office & Admin Clerks", "major_group": "4", "major_group_name": "Clerical",
+      "employment": 4500000, "median_wage": 192000, "rural_pct": 18, "informal_pct": 18,
+      "data_vintage": "PLFS 2023-24",
+      "india_note": "Largest SSC (Staff Selection Commission) exam category — 4 crore applicants for 20,000 posts in 2023. Govt office automation under Digital India slowly reducing headcount in new hiring.",
+      "ai_exposure": 7, "ai_rationale": "File management, correspondence, and scheduling — AI handles most of this. India's clerical workforce remains large due to slow digitisation of legacy government workflows.",
+      "automation_risk": 7, "formalization_potential": 8, "gig_potential": 2, "growth_outlook": "declining"
+    },
+    {
+      "code": "432", "name": "Data Entry & BPO Operators", "major_group": "4", "major_group_name": "Clerical",
+      "employment": 2800000, "median_wage": 168000, "rural_pct": 12, "informal_pct": 18,
+      "data_vintage": "PLFS 2023-24",
+      "india_note": "India's BPO industry employs ~1.4M in voice/non-voice processes. Automation wave already reducing new hiring in transactional BPO. Top firms (WNS, Genpact, EXL) shifting to analytics and AI.",
+      "ai_exposure": 9, "ai_rationale": "Structured data entry is the archetype of work AI and OCR replaces at scale. Already happening — NASSCOM reports 15% headcount reduction in traditional BPO in 2023-24.",
+      "automation_risk": 9, "formalization_potential": 7, "gig_potential": 2, "growth_outlook": "declining"
+    },
+    {
+      "code": "421", "name": "Bank Tellers & Cashiers", "major_group": "4", "major_group_name": "Clerical",
+      "employment": 1800000, "median_wage": 168000, "rural_pct": 20, "informal_pct": 25,
+      "data_vintage": "PLFS 2023-24",
+      "india_note": "UPI processed 18,000+ crore transactions in 2024 — world's largest real-time payment system. ATMs and UPI/PhonePe/GPay reducing teller transactions by ~30% since 2019.",
+      "ai_exposure": 6, "ai_rationale": "Cash handling and basic transactions increasingly self-served via UPI and ATMs. Relationship banking and loan processing roles remain human.",
+      "automation_risk": 8, "formalization_potential": 8, "gig_potential": 1, "growth_outlook": "declining"
+    },
+    {
+      "code": "512", "name": "Cooks & Dhaba/Hotel Staff", "major_group": "5", "major_group_name": "Service & Sales",
+      "employment": 6500000, "median_wage": 120000, "rural_pct": 38, "informal_pct": 72,
+      "data_vintage": "PLFS 2023-24",
+      "india_note": "Dhaba culture, wedding catering, school mid-day meal scheme (12 crore students) drive massive cook employment. Zomato/Swiggy cloud kitchen segment growing 25% YoY creating new format.",
+      "ai_exposure": 2, "ai_rationale": "Cooking requires tactile skill, heat sense, and real-time adaptation. AI has no meaningful current path to replace a tandoor cook or a hotel chef.",
+      "automation_risk": 3, "formalization_potential": 3, "gig_potential": 4, "growth_outlook": "stable"
+    },
+    {
+      "code": "516", "name": "Security Guards & Watchmen", "major_group": "5", "major_group_name": "Service & Sales",
+      "employment": 9500000, "median_wage": 156000, "rural_pct": 28, "informal_pct": 55,
+      "data_vintage": "QES Q3 2024",
+      "india_note": "India has 9M+ private security guards — largest private security industry in the world (CAPSI 2024). Minimum wage ₹12,000–17,000/month by state. CCTV+AI surveillance is expanding, but human presence mandated by law in most settings.",
+      "ai_exposure": 2, "ai_rationale": "Physical deterrence, emergency response, and access control require human presence. AI surveillance assists but cannot legally or practically replace guards at most posts.",
+      "automation_risk": 4, "formalization_potential": 5, "gig_potential": 2, "growth_outlook": "stable"
+    },
+    {
+      "code": "522", "name": "Kirana & Shop Owners", "major_group": "5", "major_group_name": "Service & Sales",
+      "employment": 16000000, "median_wage": 204000, "rural_pct": 44, "informal_pct": 78,
+      "data_vintage": "PLFS 2023-24",
+      "india_note": "1.2 crore kirana stores — India's largest retail network. Reliance JioMart, Amazon Bazaar digitising kiranas via ONDC. UPI adoption in 90%+ of kiranas but bookkeeping still largely manual (Khatabook serves 2Cr businesses).",
+      "ai_exposure": 3, "ai_rationale": "Inventory AI (Khatabook, OkCredit) and UPI billing emerging, but personal relationships and credit extension to known customers are still the kirana's core advantage.",
+      "automation_risk": 3, "formalization_potential": 3, "gig_potential": 2, "growth_outlook": "stable"
+    },
+    {
+      "code": "524", "name": "Retail Salespersons & Sales Staff", "major_group": "5", "major_group_name": "Service & Sales",
+      "employment": 13000000, "median_wage": 120000, "rural_pct": 32, "informal_pct": 68,
+      "data_vintage": "PLFS 2023-24",
+      "india_note": "Organised retail (Reliance, DMart, Zudio, Meesho) growing 15% annually. But 93% of India's ₹100L crore retail is still unorganised. Mall culture concentrated in top-8 metros.",
+      "ai_exposure": 3, "ai_rationale": "Product recommendation AI present in organised retail apps; in-store personal selling in jewellery, textiles, electronics remains relationship-based.",
+      "automation_risk": 4, "formalization_potential": 4, "gig_potential": 3, "growth_outlook": "stable"
+    },
+    {
+      "code": "534", "name": "Gig Delivery & Platform Workers", "major_group": "5", "major_group_name": "Service & Sales",
+      "employment": 10000000, "median_wage": 108000, "rural_pct": 15, "informal_pct": 88,
+      "data_vintage": "NITI Aayog 2022 + Projected 2025",
+      "india_note": "~1 crore active gig workers on Swiggy, Zomato, Blinkit, Amazon, Ola, Uber, Zepto, Urban Company. NITI Aayog projects 2.35 crore gig workers by 2029-30. Social security code 2020 recognises gig workers but implementation pending.",
+      "ai_exposure": 3, "ai_rationale": "Route optimisation AI runs the dispatch — but the physical delivery and 10-minute guarantee require human riders. Drone delivery is a decade away at this scale.",
+      "automation_risk": 6, "formalization_potential": 4, "gig_potential": 10, "growth_outlook": "fast-growing"
+    },
+    {
+      "code": "531", "name": "Childcare & Anganwadi Workers", "major_group": "5", "major_group_name": "Service & Sales",
+      "employment": 4200000, "median_wage": 84000, "rural_pct": 62, "informal_pct": 80,
+      "data_vintage": "WCD Ministry 2024",
+      "india_note": "14 lakh Anganwadi centres employ 13L workers + 13L helpers under ICDS scheme. Paid ₹4,500–10,000/month — below minimum wage. PM POSHAN (mid-day meal) scheme employs additional 25L cooks.",
+      "ai_exposure": 2, "ai_rationale": "Early childhood development, nutrition monitoring, and community mobilisation require trusted local women workers — irreplaceable by technology.",
+      "automation_risk": 1, "formalization_potential": 4, "gig_potential": 1, "growth_outlook": "stable"
+    },
+    {
+      "code": "535", "name": "Urban Company & Home Service Workers", "major_group": "5", "major_group_name": "Service & Sales",
+      "employment": 2500000, "median_wage": 156000, "rural_pct": 5, "informal_pct": 65,
+      "data_vintage": "Urban Company 2024 + Estimates",
+      "india_note": "Urban Company, Justdial, NoBroker, Housejoy platform for plumbers, AC technicians, beauticians. ~25L workers in platform home services. Monthly earnings ₹15,000–35,000 — significantly above informal peers.",
+      "ai_exposure": 3, "ai_rationale": "Job matching and scheduling is AI-driven on platforms. Actual service delivery (AC repair, beauty, plumbing) remains entirely manual.",
+      "automation_risk": 2, "formalization_potential": 6, "gig_potential": 9, "growth_outlook": "fast-growing"
+    },
+    {
+      "code": "611", "name": "Crop Farmers (Self-employed)", "major_group": "6", "major_group_name": "Agriculture",
+      "employment": 125000000, "median_wage": 96000, "rural_pct": 98, "informal_pct": 98,
+      "data_vintage": "Agricultural Census 2022-23",
+      "india_note": "86% of India's 14.6 crore farmers own less than 2 hectares. PM-KISAN supports 11 crore farmers with ₹6,000/yr. MSP covers 23 crops but only 6% of farmers sell at MSP. Average farm income: ₹10,218/month (NABARD NAFIS 2023).",
+      "ai_exposure": 1, "ai_rationale": "Precision agriculture apps exist (Cropin, Fasal, DeHaat) but smartphone penetration in small farmers is limited and core work is physical and weather-dependent.",
+      "automation_risk": 4, "formalization_potential": 1, "gig_potential": 1, "growth_outlook": "declining"
+    },
+    {
+      "code": "612", "name": "Animal Farmers & Dairy Workers", "major_group": "6", "major_group_name": "Agriculture",
+      "employment": 22000000, "median_wage": 90000, "rural_pct": 94, "informal_pct": 96,
+      "data_vintage": "DAHD Annual Report 2023-24",
+      "india_note": "Amul cooperative model covers 36L dairy farmers. India is world's largest milk producer at 230MT/year. NDDB, state cooperatives provide structured income but 75% still sell through informal channels.",
+      "ai_exposure": 1, "ai_rationale": "Animal husbandry is physical and relational. AI-based disease detection apps emerging but adoption minimal at small farmer level.",
+      "automation_risk": 3, "formalization_potential": 3, "gig_potential": 1, "growth_outlook": "stable"
+    },
+    {
+      "code": "631", "name": "Fishers & Aquaculture Workers", "major_group": "6", "major_group_name": "Agriculture",
+      "employment": 9000000, "median_wage": 84000, "rural_pct": 72, "informal_pct": 88,
+      "data_vintage": "DAHD Fisheries 2023-24",
+      "india_note": "India is world's 3rd largest fish producer. PM Matsya Sampada Yojana investing ₹20,050 crore in fisheries. Deep sea fishing and fish farming under formalization push. Andhra Pradesh, West Bengal, Kerala, Gujarat largest hubs.",
+      "ai_exposure": 1, "ai_rationale": "Deep-sea navigation AI exists (SmartFish) but most Indian fishers rely on traditional knowledge. Core work remains physical and ocean-dependent.",
+      "automation_risk": 2, "formalization_potential": 2, "gig_potential": 1, "growth_outlook": "growing"
+    },
+    {
+      "code": "711", "name": "Miners & Stone Quarry Workers", "major_group": "7", "major_group_name": "Craft & Trades",
+      "employment": 4000000, "median_wage": 156000, "rural_pct": 78, "informal_pct": 62,
+      "data_vintage": "Ministry of Mines 2024",
+      "india_note": "Jharkhand, Odisha, Chhattisgarh mineral belt employs millions. Illegal sand mining employs large informal workforce. PMKK scheme training miners for formal sector transition.",
+      "ai_exposure": 1, "ai_rationale": "Underground and quarry work is hazardous and physical. AI used in safety monitoring at large mines but does not reduce labour needs.",
+      "automation_risk": 6, "formalization_potential": 3, "gig_potential": 1, "growth_outlook": "stable"
+    },
+    {
+      "code": "712", "name": "Masons & Building Construction Workers", "major_group": "7", "major_group_name": "Craft & Trades",
+      "employment": 12000000, "median_wage": 144000, "rural_pct": 55, "informal_pct": 88,
+      "data_vintage": "PLFS 2023-24",
+      "india_note": "PM Awas Yojana (Urban + Gramin) targeting 2.95 crore houses. Smart Cities mission and RERA driving construction boom. Skilled mason shortage is critical — ITI mason enrollments growing 40% since 2020.",
+      "ai_exposure": 1, "ai_rationale": "Masonry, tiling, plastering — these require physical skill in unstructured environments. No credible automation path in India's cost structure.",
+      "automation_risk": 2, "formalization_potential": 2, "gig_potential": 5, "growth_outlook": "stable"
+    },
+    {
+      "code": "741", "name": "Electricians & Wiremen", "major_group": "7", "major_group_name": "Craft & Trades",
+      "employment": 7500000, "median_wage": 192000, "rural_pct": 42, "informal_pct": 58,
+      "data_vintage": "PLFS 2023-24",
+      "india_note": "Saubhagya scheme electrified 2.86 crore households 2017-2019. Solar rooftop and EV charging infrastructure creating new demand. Urban Company, Sulekha platforms formalising electrical services.",
+      "ai_exposure": 2, "ai_rationale": "Fault diagnosis tools emerging; but wiring in old Indian buildings, mixed standards, and physical installation are manual. Demand growing faster than supply.",
+      "automation_risk": 3, "formalization_potential": 5, "gig_potential": 7, "growth_outlook": "growing"
+    },
+    {
+      "code": "742", "name": "Electronics & Mobile Repair Technicians", "major_group": "7", "major_group_name": "Craft & Trades",
+      "employment": 3800000, "median_wage": 204000, "rural_pct": 28, "informal_pct": 48,
+      "data_vintage": "PLFS 2023-24",
+      "india_note": "India's mobile repair market — 150 crore active connections, 85 crore smartphones. Every town has multi-floor mobile markets (Palika Bazaar, SP Road). PMKVY providing formal electronics training.",
+      "ai_exposure": 3, "ai_rationale": "Diagnostics AI emerging; physical board-level repair requires manual skill that is India's cost advantage globally.",
+      "automation_risk": 4, "formalization_potential": 5, "gig_potential": 6, "growth_outlook": "growing"
+    },
+    {
+      "code": "751", "name": "Textile & Garment Workers", "major_group": "7", "major_group_name": "Craft & Trades",
+      "employment": 10000000, "median_wage": 96000, "rural_pct": 52, "informal_pct": 78,
+      "data_vintage": "Ministry of Textiles 2024",
+      "india_note": "Second-largest employer after agriculture. Tiruppur (₹80,000 crore knitwear), Surat (polyester), Bhiwandi (looms), Ludhiana (hosiery). PLI scheme for textiles attracting ₹10,683 crore investment. Competing with Bangladesh, Vietnam for global orders.",
+      "ai_exposure": 1, "ai_rationale": "Garment stitching requires dexterous manual labour. India's wage competitiveness means automation investment is economically unattractive at current scales.",
+      "automation_risk": 5, "formalization_potential": 4, "gig_potential": 2, "growth_outlook": "stable"
+    },
+    {
+      "code": "771", "name": "Handicraft & Artisan Workers", "major_group": "7", "major_group_name": "Craft & Trades",
+      "employment": 7000000, "median_wage": 84000, "rural_pct": 65, "informal_pct": 85,
+      "data_vintage": "O/o DC Handicrafts 2023-24",
+      "india_note": "7 crore artisans across pottery, woodwork, block printing, embroidery, metalwork. PM Vishwakarma Yojana (2023) provides ₹15,000 toolkit + ₹1-2L collateral-free credit. Meesho, Amazon Karigar digitising craftsperson sales.",
+      "ai_exposure": 1, "ai_rationale": "Handcraft is the antithesis of automation — its value lies in human creation. AI generative art is a market threat, not a workflow replacement.",
+      "automation_risk": 2, "formalization_potential": 2, "gig_potential": 4, "growth_outlook": "stable"
+    },
+    {
+      "code": "832", "name": "Auto Rickshaw & Taxi Drivers", "major_group": "8", "major_group_name": "Machine Operators",
+      "employment": 20000000, "median_wage": 144000, "rural_pct": 30, "informal_pct": 72,
+      "data_vintage": "PLFS 2023-24",
+      "india_note": "~1.5 crore Ola/Uber/Rapido registered drivers. Majority own their vehicles (asset-heavy gig model). EV three-wheelers (Mahindra Treo, Bajaj RE) displacing petrol autos at 15% rate. Mumbai alone has 2L auto-rickshaws.",
+      "ai_exposure": 2, "ai_rationale": "Dispatch fully AI-optimised on platforms. Autonomous vehicles in India's traffic conditions are decades away — the driving skill remains entirely human.",
+      "automation_risk": 6, "formalization_potential": 4, "gig_potential": 9, "growth_outlook": "stable"
+    },
+    {
+      "code": "833", "name": "Truck & Bus Drivers", "major_group": "8", "major_group_name": "Machine Operators",
+      "employment": 10000000, "median_wage": 180000, "rural_pct": 42, "informal_pct": 58,
+      "data_vintage": "PLFS 2023-24",
+      "india_note": "~1 crore truck drivers move ₹180L crore of goods. 7L driver shortage estimated in 2024. PM e-Bus Sewa deploying 10,000 e-buses in cities. Long-haul trucking unions are among India's most organised labour segments.",
+      "ai_exposure": 2, "ai_rationale": "ERP and route AI adopted by logistics firms (Delhivery, Blue Dart). Autonomous trucking on India's roads is not viable for 15+ years.",
+      "automation_risk": 6, "formalization_potential": 4, "gig_potential": 4, "growth_outlook": "stable"
+    },
+    {
+      "code": "821", "name": "Factory & Industrial Machine Operators", "major_group": "8", "major_group_name": "Machine Operators",
+      "employment": 3000000, "median_wage": 180000, "rural_pct": 35, "informal_pct": 38,
+      "data_vintage": "QES Q3 2024",
+      "india_note": "PLI scheme attracting mobile phone, auto components, pharma manufacturing to India. Foxconn, Samsung, Apple vendors creating formal machine operator demand. ITI-trained operators in demand — 15,000 ITIs train 15L students/year.",
+      "ai_exposure": 3, "ai_rationale": "Process automation and predictive maintenance AI transforming organised plants. New investment in India means newer, more automated facilities — fewer operators per unit output.",
+      "automation_risk": 7, "formalization_potential": 7, "gig_potential": 1, "growth_outlook": "growing"
+    },
+    {
+      "code": "911", "name": "Domestic Workers (Maids, Cooks, Cleaners)", "major_group": "9", "major_group_name": "Elementary",
+      "employment": 25000000, "median_wage": 84000, "rural_pct": 45, "informal_pct": 99,
+      "data_vintage": "PLFS 2023-24",
+      "india_note": "2.5 crore domestic workers — 93% women, nearly all informal. No dedicated law despite decades of campaigns. Average wage ₹5,000–8,000/month in metros. Urban Company partially formalising skilled segment (housekeeping, deep cleaning).",
+      "ai_exposure": 1, "ai_rationale": "Domestic work is entirely physical in variable household environments — cleaning, cooking, and childcare remain irreplaceable human services.",
+      "automation_risk": 2, "formalization_potential": 2, "gig_potential": 5, "growth_outlook": "stable"
+    },
+    {
+      "code": "921", "name": "Agricultural Labourers (Casual/Daily Wage)", "major_group": "9", "major_group_name": "Elementary",
+      "employment": 90000000, "median_wage": 78000, "rural_pct": 97, "informal_pct": 99,
+      "data_vintage": "PLFS 2023-24",
+      "india_note": "9 crore landless labourers — India's most economically vulnerable. MNREGA guarantees 100 days/year employment at ₹237–374/day by state. National average MNREGA wage: ₹267/day (2024). Women are 57% of MNREGA workforce.",
+      "ai_exposure": 1, "ai_rationale": "Farm labouring — weeding, harvesting, transplanting — is entirely manual. Even where mechanisation is possible (combine harvesters), the economics often favour labour at India's wage levels.",
+      "automation_risk": 3, "formalization_potential": 1, "gig_potential": 1, "growth_outlook": "declining"
+    },
+    {
+      "code": "931", "name": "Construction Labourers (Daily Wage)", "major_group": "9", "major_group_name": "Elementary",
+      "employment": 38000000, "median_wage": 90000, "rural_pct": 60, "informal_pct": 97,
+      "data_vintage": "PLFS 2023-24",
+      "india_note": "3.8 crore construction workers, 80% migrant. Building & Other Construction Workers Act 1996 provides welfare fund — ₹75,000+ crore collected, only 20% disbursed. e-Shram registered 28 crore unorganised workers by 2024.",
+      "ai_exposure": 1, "ai_rationale": "Load bearing, digging, brick-laying — physical and unstructured. Construction robots are experimental globally; economically infeasible in India's labour market for decades.",
+      "automation_risk": 2, "formalization_potential": 2, "gig_potential": 3, "growth_outlook": "stable"
+    },
+    {
+      "code": "961", "name": "Sanitation & Waste Collection Workers", "major_group": "9", "major_group_name": "Elementary",
+      "employment": 5000000, "median_wage": 90000, "rural_pct": 35, "informal_pct": 60,
+      "data_vintage": "PLFS 2023-24 + MoHUA 2024",
+      "india_note": "Swachh Bharat Mission created formal sanitation workforce in municipalities. SC/manual scavengers — 58,000 identified (official), likely far more. SC/ST Welfare allocations increasing sanitation worker wages. Mechanised sewer cleaning mandate reducing manual hazards.",
+      "ai_exposure": 1, "ai_rationale": "Waste collection and sanitation are physical municipal services. Mechanised sweepers reduce headcount in organised municipalities but informal waste pickers remain.",
+      "automation_risk": 4, "formalization_potential": 5, "gig_potential": 2, "growth_outlook": "stable"
+    },
+    {
+      "code": "962", "name": "Delivery & Logistics Workers", "major_group": "9", "major_group_name": "Elementary",
+      "employment": 8000000, "median_wage": 96000, "rural_pct": 22, "informal_pct": 78,
+      "data_vintage": "PLFS 2023-24",
+      "india_note": "India Post, BlueDart, Delhivery, Ecom Express, DTDC employ millions. E-commerce delivery growing 28% YoY. Average last-mile delivery salary ₹8,000–12,000/month. Often classified as contractors to avoid PF/ESIC obligations.",
+      "ai_exposure": 2, "ai_rationale": "Route AI fully deployed by all major logistics firms. Last-mile delivery in India's unaddressed lanes, gated societies, and varied building types still requires human judgment.",
+      "automation_risk": 5, "formalization_potential": 4, "gig_potential": 8, "growth_outlook": "growing"
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Indian Jobs Map</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&display=swap" rel="stylesheet">
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <script src="data/occupations.js"></script>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header id="top-bar">
+    <div id="logo-wrap">
+      <h1 id="logo">Indian&nbsp;Jobs&nbsp;Map</h1>
+    </div>
+    <div id="hdr-right">
+      <span id="hdr-stat"><span id="hdr-workers">563M</span> workers &nbsp;·&nbsp; <span id="hdr-occ">38</span> occupations</span>
+      <a class="hdr-link" href="https://github.com/konkomaji/indianjobsmap" target="_blank">GitHub ↗</a>
+    </div>
+  </header>
+
+  <!-- DESCRIPTION -->
+  <section id="desc">
+    <p id="desc-p1">
+      This is a visualisation of <strong>38 occupations</strong> from the Periodic Labour Force Survey 2023-24,
+      covering India's <strong>563 million workers</strong>. The size of each rectangle corresponds to the number of
+      workers in that occupation. The colour can be changed between AI Exposure, Automation Risk, Median Wage,
+      Formalization Potential, and Gig Platform Potential using the buttons below.
+    </p>
+    <p id="desc-p2">
+      A research tool for visually exploring <strong>Periodic Labour Force Survey</strong> (MoSPI 2023-24)
+      and National Classification of Occupations 2015 data across India's 563 million workers.
+      This is not a report, a paper, or a serious economic publication. It is a development tool
+      for exploring India's labour market data visually.
+      Built by <a href="https://www.linkedin.com/in/konkomaji/" target="_blank" rel="noopener"><strong>Konko Maji</strong></a>, inspired by
+      <a href="https://karpathy.ai/jobs/" target="_blank">karpathy/jobs</a>.
+      The AI Exposure colour can also be re-run with a different prompt, for example:
+      <strong>robotics exposure, offshoring risk, climate transition impact.</strong>
+    </p>
+    <p id="desc-caveat">
+      <strong>Caveat on AI Exposure scores:</strong> These are rough estimates from an LLM, not rigorous predictions.
+      A high score does not mean the job will disappear. Software developers score 9/10 because AI is already
+      reshaping their work, but demand for software keeps growing as each developer becomes more productive.
+      The score does not account for demand elasticity, latent demand, regulatory barriers, or the specific
+      realities of India's largely informal economy. Many high-exposure occupations will be reshaped rather than replaced.
+    </p>
+  </section>
+
+  <!-- CONTROLS -->
+  <div id="controls">
+    <span id="ctrl-lbl">Colour by</span>
+    <div id="layer-row">
+      <button class="lb active" data-layer="ai_exposure">AI Exposure</button>
+      <button class="lb" data-layer="automation_risk">Automation Risk</button>
+      <button class="lb" data-layer="median_wage">Median Wage</button>
+      <button class="lb" data-layer="formalization_potential">Formalization</button>
+      <button class="lb" data-layer="gig_potential">Gig Potential</button>
+      <button class="lb" data-layer="growth_outlook">Growth</button>
+    </div>
+  </div>
+
+  <!-- LEGEND BAR — under colour buttons -->
+  <div id="legend-bar">
+    <div id="legend-inner">
+      <span id="legend-low"></span>
+      <div id="legend-grad"></div>
+      <span id="legend-high"></span>
+    </div>
+    <div id="legend-swatches"></div>
+    <div id="credits">
+      <span><span id="leg-workers">563M</span> workers</span>
+      <span class="sep">·</span>
+      <span>Source: <strong>PLFS 2023-24</strong> (MoSPI)</span>
+      <span class="sep">·</span>
+      <span>NASSCOM 2024, QES Q3 2024</span>
+      <span class="sep">·</span>
+      <span>Built by <a href="https://www.linkedin.com/in/konkomaji/" target="_blank" rel="noopener"><strong>Konko Maji</strong></a></span>
+      <span class="sep">·</span>
+      <span>Inspired by <a href="https://karpathy.ai/jobs/" target="_blank">karpathy/jobs</a></span>
+    </div>
+  </div>
+
+  <!-- TREEMAP -->
+  <div id="map-wrap">
+    <div id="treemap"></div>
+
+    <!-- Floating info card (desktop click) -->
+    <div id="float-card" class="hidden">
+      <button id="fc-close">&#10005;</button>
+      <div id="fc-vintage"></div>
+      <div id="fc-name"></div>
+      <div id="fc-meta"></div>
+      <div id="fc-growth"></div>
+      <div id="fc-stats"></div>
+      <div id="fc-radar"><svg id="fc-radar-svg"></svg></div>
+      <div id="fc-scores"></div>
+      <div id="fc-india"></div>
+      <div id="fc-rationale"></div>
+    </div>
+  </div>
+
+  <!-- TOOLTIP -->
+  <div id="tt"></div>
+
+  <!-- MOBILE SHEET -->
+  <div id="mob-sheet" class="mob-hidden">
+    <div id="mob-handle"></div>
+    <button id="mob-close">&#10005;</button>
+    <div id="mob-body"></div>
+  </div>
+  <div id="mob-veil" class="mob-hidden"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
